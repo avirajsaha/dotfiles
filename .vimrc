@@ -3,6 +3,11 @@
 " Author: Aviraj Saha                                                           
 """""""""""""""""""""                                                           
                                                                                 
+"------------------------------------------------------
+"Leader key selection 
+"------------------------------------------------------
+let mapleader= "\\"
+
 "vundle settings for plugin management                                          
 set rtp+=~/.vim/bundle/vundle                                                   
 call vundle#rc()                                                                
@@ -15,36 +20,25 @@ if exists (':Bundle')
     Bundle 'git://github.com/mileszs/ack.vim'
     "asyncfinder needs vim to be compiled with python support
     "Bundle 'git://github.com/vim-scripts/asyncfinder.vim'
+"Fuzzy file finder
     Bundle 'git://github.com/kien/ctrlp.vim'
+"status line for vim"
     Bundle 'git://github.com/bling/vim-airline'
+"color scheme for vim
     Bundle 'git://github.com/tomasr/molokai'
-    Bundle 'git://github.com/itchyny/lightline.vim'
+"multiple color tagging for vim"
     Bundle 'git://github.com/vim-scripts/Mark'
 "MRU recently opened file
 "TComment
 "FuzzyFinder
 "LustyExplorer
-"lightline
-
 endif                                                                           
 
-"plugin settings
-
-let g:ackprg="ack"     "enable ack for searching                                                                           
-let g:ack_default_options=1
-
-let g:ctrlp_max_depth = 40 
-let g:ctrlp_working_path_mode = ""
-let g:ctrlp_max_files = 0 
-
-"Open new tab and search for something
-nmap <Leader>a :tab split: Ack ""<Left>      
+                                                                               
+"------------------------------------------------------
+"basic settings.                                                              
+"------------------------------------------------------
                                                                                 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-
-
 "turns on the syntx highlighting                                                
 syntax on                                                                       
 "turns on incremental search                                                    
@@ -66,13 +60,11 @@ set title
 "set focus on the current line                                                  
 set cursorline                                                                  
 "set a column marker at coumn 80                                                
-set colorcolumn=80                                  
-" set a column highlighting 
-" set cursorcolumn cursorline 
+"set colorcolumn=80                                  
 
 
 " Reduce tab to 4 spaces
-" set tabstop=4
+"set tabstop=4
 
 
 "--------------------------------------------------                             
@@ -82,11 +74,27 @@ set backupdir=~/.vim/tmp/backup//     "backups
 set directory=~/.vim/tmp/swap//       "swap file                                
 set backup                            "enable backups                           
 set noswapfile                                                                  
+
+"------------------------------------------------------
+"plugin settings
+"------------------------------------------------------
+
+"-----------------------------------------------------
+"Ack settings
+"-----------------------------------------------------
+let g:ackprg="ack"     "enable ack for searching                                                                           
+let g:ack_default_options=1
+
+let g:ctrlp_max_depth = 40 
+let g:ctrlp_working_path_mode = ""
+let g:ctrlp_max_files = 0 
+
+"Open new tab and search for something
+nmap <Leader>a :tab split: Ack ""<Left>      
                                                                                 
 "---------------------------------------------------                            
-"keyboard mapping {{{ 1                                                         
-"---------------------------------------------------                            
 "NERDTree Toggle
+"---------------------------------------------------                            
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
 let NERDTreeWinPos=0
 "Keep the current directory updated as per the current file
@@ -104,3 +112,12 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_theme             = 'powerlineish'
 "let g:airline_enable_branch     = 1
 "let g:airline_enable_syntastic  = 1
+
+"---------------------------------------------------
+"tab operations keybindings 
+"---------------------------------------------------
+noremap tn :tabnew<space>
+noremap tk :tabnext<CR>
+noremap tj :tabprev<CR>
+noremap th :tabfirst<CR>
+noremap tl :tablast<CR>
